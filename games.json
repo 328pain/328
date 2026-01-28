@@ -1,0 +1,93 @@
+[
+  {
+    "link": "projects/retro-bowl/index.html",
+    "imgSrc": "projects/retro-bowl/favicon.ico",
+    "title": "Retro Bowl",
+    "tags": ["sports"],
+    "enabled": true
+  },
+  {
+    "link": "projects/drift-boss/index.html",
+    "imgSrc": "projects/drift-boss/icon.png",
+    "title": "Drift Boss",
+    "tags": ["driving"],
+    "enabled": false
+  },
+  {
+    "link": "projects/bloxors/index.html",
+    "imgSrc": "projects/bloxors/block.png",
+    "title": "Bloxors",
+    "tags": ["puzzle"],
+    "enabled": true
+  },
+  {
+    "link": "projects/subway-surfers/index.html",
+    "imgSrc": "projects/subway-surfers/splash.jpg",
+    "title": "Subway Surfers",
+    "tags": ["running"],
+    "enabled": false
+  },
+  {
+    "link": "projects/cookie-clicker/index.html",
+    "imgSrc": "projects/cookie-clicker/splash.png",
+    "title": "Cookie Clicker",
+    "tags": ["idle"],
+    "enabled": true
+  },
+  {
+    "link": "projects/hotline-miami/index.html",
+    "imgSrc": "projects/hotline-miami/splash.png",
+    "title": "Hotline Miami",
+    "tags": ["action"],
+    "enabled": true
+  },
+  {
+    "link": "projects/basket-bros/index.html",
+    "imgSrc": "projects/basket-bros/splash.jpeg",
+    "title": "Basket Bros",
+    "tags": ["sports"],
+    "enabled": true
+  },
+  {
+    "link": "projects/basket-random/index.html",
+    "imgSrc": "projects/basket-random/splash.png",
+    "title": "Basket Random",
+    "tags": ["sports"],
+    "enabled": true
+  },
+  {
+    "link": "projects/bitlife/index.html",
+    "imgSrc": "projects/bitlife/splash.png",
+    "title": "BitLife",
+    "tags": ["simulation", "idle"],
+    "enabled": true
+  },
+  {
+    "link": "projects/cluster-truck/index.html",
+    "imgSrc": "projects/cluster-truck/splash.png",
+    "title": "Cluster Truck",
+    "tags": ["action", "driving"],
+    "enabled": true
+  },
+  {
+    "link": "projects/moto-x3m/index.html",
+    "imgSrc": "projects/moto-x3m/splash.jpg",
+    "title": "Moto X3M",
+    "tags": ["driving", "action"],
+    "enabled": true
+  },
+  {
+    "link": "projects/house-of-hazards/index.html",
+    "imgSrc": "projects/house-of-hazards/splash.png",
+    "title": "House of Hazards",
+    "tags": ["party", "action"],
+    "enabled": true
+  },
+  {
+    "link": "projects/toss-the-turtle/index.html",
+    "imgSrc": "projects/toss-the-turtle/splash.png",
+    "title": "Toss The Turtle",
+    "tags": ["action", "launch"],
+    "enabled": true
+  }
+]
