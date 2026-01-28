@@ -1,164 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>games</title>
-<link rel="icon" href="/bcps.png">
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-:root{
-  --bg1:#1b1b1b;
-  --bg2:#0f0f0f;
-  --bg3:#242424;
-  --card:#2b2b2b;
-  --border:#000;
-  --text:#fff;
-}
-
-*{box-sizing:border-box;image-rendering:pixelated}
-
-body{
-  margin:0;
-  padding:16px;
-  font-family:'Press Start 2P',monospace;
-  color:var(--text);
-  background:linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));
-  background-size:400% 400%;
-  animation:bgMove 22s ease infinite;
-}
-
-@keyframes bgMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-
-a{color:#ff77ff;text-decoration:none;font-size:12px}
-
-.search{
-  width:100%;
-  padding:14px;
-  margin:12px 0 20px;
-  border:4px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  font-family:inherit;
-  font-size:10px;
-}
-
-h2{
-  font-size:12px;
-  margin:28px 0 12px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-  gap:16px;
-}
-
-.game{
-  background:var(--card);
-  border:4px solid var(--border);
-  padding:8px;
-  text-align:center;
-  cursor:pointer;
-  position:relative;
-}
-
-.game img{
-  width:100%;
-  height:100px;
-  object-fit:cover;
-  border:2px solid var(--border);
-}
-
-.star{
-  position:absolute;
-  top:6px;
-  right:6px;
-  color:gold;
-  cursor:pointer;
-}
-</style>
+  <meta charset="utf-8">
+  <title>games</title>
+  <link rel="icon" type="image/png" href="bcps.png?v=3">
 </head>
 <body>
 
-<a href="index.html">back</a>
-<input id="search" class="search" placeholder="search games">
-<div id="content"></div>
+<a href="index.html">home</a>
+<a href="settings.html">settings</a>
+
+<input id="search" placeholder="search games">
+
+<div id="games-grid"></div>
 
 <script>
-let fav = JSON.parse(localStorage.favorites || "[]");
-let recent = JSON.parse(localStorage.recent || "[]");
-let all = [];
+let games = [];
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-function save(){
-  localStorage.favorites = JSON.stringify(fav);
-  localStorage.recent = JSON.stringify(recent);
+const grid = document.getElementById("games-grid");
+const searchInput = document.getElementById("search");
+
+fetch("games.json")
+  .then(r => r.json())
+  .then(data => {
+    games = data.games.filter(g => g.enabled);
+    render(games);
+  });
+
+function render(list) {
+  grid.innerHTML = "";
+  list.forEach(game => {
+    const div = document.createElement("div");
+    div.innerHTML = `
+      <img src="${game.imgSrc}" width="150">
+      <p>${game.title}</p>
+    `;
+    div.onclick = () => location.href = game.link;
+    grid.appendChild(div);
+  });
 }
 
-function openGame(g){
-  recent = [g.title, ...recent.filter(t => t !== g.title)].slice(0,8);
-  save();
-  window.open(g.link, "_blank");
-}
-
-function toggleFav(t){
-  fav.includes(t) ? fav = fav.filter(x => x !== t) : fav.push(t);
-  save();
-  render();
-}
-
-function section(name, games){
-  if(!games.length) return "";
-  return `
-    <h2>${name}</h2>
-    <div class="grid">
-      ${games.map(g => `
-        <div class="game" onclick='openGame(${JSON.stringify(g)})'>
-          <div class="star" onclick="event.stopPropagation();toggleFav('${g.title}')">
-            ${fav.includes(g.title) ? "★" : "☆"}
-          </div>
-          <img src="${g.imgSrc}">
-          <div>${g.title}</div>
-        </div>
-      `).join("")}
-    </div>
-  `;
-}
-
-function render(){
-  const q = search.value.toLowerCase();
-  const enabled = all.filter(g => g.enabled && g.title.toLowerCase().includes(q));
-  const byTag = {};
-
-  enabled.forEach(g => g.tags.forEach(t => (byTag[t] = byTag[t] || []).push(g)));
-
-  content.innerHTML =
-    section("favorites", enabled.filter(g => fav.includes(g.title))) +
-    section("recently played", recent.map(t => enabled.find(g => g.title === t)).filter(Boolean)) +
-    Object.keys(byTag).sort().map(t => section(t, byTag[t])).join("");
-}
-
-fetch("/games.json").then(r => r.json()).then(d => { all = d; render(); });
-search.oninput = render;
-
-document.addEventListener("keydown", e => {
-  if (localStorage.panicEnabled === "false") return;
-
-  const key = localStorage.panicKey || "Escape";
-  let url = localStorage.panicUrl || "https://bcps.schoology.com/home";
-
-  if (e.key === key) {
-    if (!url.startsWith("http")) {
-      url = "https://" + url;
-    }
-    location.href = url;
-  }
+searchInput.addEventListener("input", () => {
+  const q = searchInput.value.toLowerCase();
+  render(games.filter(g => g.title.toLowerCase().includes(q)));
 });
 </script>
 
