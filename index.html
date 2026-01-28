@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>home</title>
-  <link rel="icon" type="image/png" href="bcps.png?v=3">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ud</title>
+<link rel="icon" href="bcps.png?v=1">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* styles unchanged */
+</style>
 </head>
 <body>
-  <h1>home</h1>
-  <button onclick="location.href='games.html'">games</button>
-  <button onclick="location.href='settings.html'">settings</button>
+
+<div class="card">
+  <div class="logo">ud</div>
+  <div class="subtitle">game hub<br>no nonsense</div>
+
+  <a href="games.html"><button class="btn primary">play</button></a>
+  <a href="settings.html"><button class="btn">settings</button></a>
+
+  <div class="footer">panic key enabled</div>
+</div>
+
+<script>
+document.addEventListener("keydown", e => {
+  if (localStorage.panicEnabled === "false") return;
+
+  const key = localStorage.panicKey || "Escape";
+  let url = localStorage.panicUrl || "https://bcps.schoology.com/home";
+
+  if (e.key === key) {
+    if (!url.startsWith("http")) url = "https://" + url;
+    location.href = url;
+  }
+});
+</script>
+
 </body>
 </html>
