@@ -18,7 +18,7 @@
     "imgSrc": "projects/bloxors/block.png",
     "title": "Bloxors",
     "tags": ["puzzle"],
-    "enabled": true
+    "enabled": false
   },
   {
     "link": "projects/subway-surfers/index.html",
@@ -39,7 +39,7 @@
     "imgSrc": "projects/hotline-miami/splash.png",
     "title": "Hotline Miami",
     "tags": ["action"],
-    "enabled": true
+    "enabled": false
   },
   {
     "link": "projects/basket-bros/index.html",
@@ -88,6 +88,34 @@
     "imgSrc": "projects/toss-the-turtle/splash.png",
     "title": "Toss The Turtle",
     "tags": ["action", "launch"],
+    "enabled": true
+  },
+  {
+    "link": "projects/run-3/index.html",
+    "imgSrc": "projects/run-3/splash.png",
+    "title": "Run 3",
+    "tags": ["platformer"],
+    "enabled": true
+  },
+  {
+    "link": "projects/moto-x3m-2/index.html",
+    "imgSrc": "projects/moto-x3m-2/splash.png",
+    "title": "Moto X3M 2",
+    "tags": ["driving", "action"],
+    "enabled": true
+  },
+  {
+    "link": "projects/jetpack-joyride/index.html",
+    "imgSrc": "projects/jetpack-joyride/splash.png",
+    "title": "Jetpack Joyride",
+    "tags": ["action"],
+    "enabled": true
+  },
+  {
+    "link": "projects/happy-wheels/index.html",
+    "imgSrc": "projects/happy-wheels/splash.png",
+    "title": "Happy Wheels",
+    "tags": ["action"],
     "enabled": true
   }
 ]
